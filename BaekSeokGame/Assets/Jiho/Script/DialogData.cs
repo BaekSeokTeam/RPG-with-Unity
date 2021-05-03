@@ -11,7 +11,7 @@ using System;
 public class MyTextData
 {
     public int id;
-    public int status;
+    public int chapter;
     public int[] emotion;
     public string[] script;
 
@@ -52,7 +52,7 @@ public class DialogData : MonoBehaviour
 
     public string GetNpcDialog(int id, int idx)
     {
-        int findIndex = Array.FindIndex(npcText.data, i => i.id == id&&i.status==chapterNo);
+        int findIndex = Array.FindIndex(npcText.data, i => i.id == id&&i.chapter==chapterNo);
         if (idx >= npcText.data[findIndex].script.Length)
         {
             return null;
@@ -66,14 +66,14 @@ public class DialogData : MonoBehaviour
 
     public Sprite GetNpcPortrait(int id, int idx)
     {
-        int findIndex = Array.FindIndex(npcText.data, i => i.id == id&& i.status == chapterNo);
+        int findIndex = Array.FindIndex(npcText.data, i => i.id == id&& i.chapter == chapterNo);
         int emotionIdx = npcText.data[findIndex].emotion[idx];
       
         return portraitData[id + emotionIdx];
     }
     public string GetPlayerDialog(int id, int idx)
     {
-        int findIndex = Array.FindIndex(playerText.data, i => i.id == id&& i.status == chapterNo);
+        int findIndex = Array.FindIndex(playerText.data, i => i.id == id&& i.chapter == chapterNo);
         if (idx >= playerText.data[findIndex].script.Length)
         {
             return null;
@@ -87,7 +87,7 @@ public class DialogData : MonoBehaviour
 
     public Sprite GetPlayerPortrait(int id, int idx)
     {
-        int findIndex = Array.FindIndex(playerText.data, i => i.id == id&& i.status == chapterNo);
+        int findIndex = Array.FindIndex(playerText.data, i => i.id == id&& i.chapter == chapterNo);
         int emotionIdx = playerText.data[findIndex].emotion[idx];
 
       
