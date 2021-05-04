@@ -239,12 +239,72 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &237722971
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 237722972}
+  - component: {fileID: 237722973}
+  m_Layer: 0
+  m_Name: QuestManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &237722972
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237722971}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1765061293}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &237722973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237722971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1eb9cb88ad9874fa9e8ce47dfd718b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questId: 10
+  questActionIdx: 0
+  questObject: []
+  questMonster: []
 --- !u!1 &263265835 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2174253875424309289, guid: 45e5a146221b6d14a95ed9d32b36d418,
     type: 3}
   m_PrefabInstance: {fileID: 436704235}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &263265836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263265835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c1d738e6aa7b4b4db05cc8aded698b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 10000
 --- !u!95 &263265841
 Animator:
   serializedVersion: 3
@@ -9848,6 +9908,7 @@ MonoBehaviour:
   dialogData: {fileID: 1544639250}
   npcPortrait: {fileID: 1009475803}
   playerPortrait: {fileID: 842421363}
+  questManager: {fileID: 237722973}
   dialogIdx: 0
 --- !u!1 &951512021
 GameObject:
@@ -10781,7 +10842,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0d9b4bf3933fca4aac7c42163e86dd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chapterNo: 1
+  chapterNo: 0
   portraits:
   - {fileID: 21300000, guid: 31b126a95bb9f884ebb7c8e933479bba, type: 3}
   - {fileID: 21300000, guid: 027e1ae72f6ee5c4d9667f7f728a1119, type: 3}
@@ -11208,6 +11269,7 @@ Transform:
   - {fileID: 871830990}
   - {fileID: 2099219547}
   - {fileID: 768136784}
+  - {fileID: 237722972}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

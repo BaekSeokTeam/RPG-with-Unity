@@ -6,6 +6,10 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+
+    //지호가 추가한 내용
+    
+    //
     public Animator anim;
 
     public enum CurrentState { idle, trace, attack };
@@ -63,8 +67,12 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        
         Debug.Log("enemy died!");
+        //지호가 추가한 내용
 
+        GameObject.Find("QuestManager").GetComponent<QuestManager>().QuestEmemyDied(this.GetComponent<EnemyData>().id);
+        //
         anim.SetBool("IsDead", true);
         isDead = true;
 
