@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class QuestData
 {
-    public int questId;
+
     public string questTitle;
-    public int[] questNpcId;
+    public int[] questNpc;
     public string[] questDescription;
-    public int maxQuestActionidx;
+
 
     public QuestData() { }
-    public QuestData(int id,string title,int[] npcs,string[] descriptions,int idx) {
-        questId = id;
+    public QuestData(string title,int[] npcs,string[] description) {
+
         questTitle = title;
-        questNpcId = npcs;
-        questDescription = descriptions;
-        maxQuestActionidx = idx;
+        questNpc = npcs;
+        questDescription = description;
+
    
     }
 

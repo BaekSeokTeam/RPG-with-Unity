@@ -16,6 +16,7 @@ public class DialogController : MonoBehaviour
     public DialogData dialogData;
     public GameObject npcPortrait;
     public GameObject playerPortrait;
+    public QuestManager questManager;
 
     public int dialogIdx=0;
     bool isTalking;
@@ -143,14 +144,16 @@ public class DialogController : MonoBehaviour
     //}
     void Talk(ObjectData npc)
     {
-            var response= dialogData.GetNpcDialog(npc.id, dialogIdx);
+            int talkIdx = questManager.GetQuestTalkIndex(npc.id);
+        
+            var response= dialogData.GetNpcDialog(talkIdx, dialogIdx);
             string nameText = npc.npcName;
             string body = response.Item2;
             int isNpc = response.Item1;
 
             if (body == null)
             {
-            Debug.Log("123");
+                questManager.CheckQuest(npc.id);
                 isTalking = false;
                 npcPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 1);
                 playerPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 1);
