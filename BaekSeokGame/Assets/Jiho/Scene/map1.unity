@@ -282,10 +282,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1eb9cb88ad9874fa9e8ce47dfd718b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questId: 10
+  questId: 20
   questActionIdx: 0
   questObject: []
-  questMonster: []
 --- !u!1 &263265835 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2174253875424309289, guid: 45e5a146221b6d14a95ed9d32b36d418,
@@ -6142,6 +6141,10 @@ PrefabInstance:
       propertyPath: anim
       value: 
       objectReference: {fileID: 263265841}
+    - target: {fileID: 380898436, guid: 45e5a146221b6d14a95ed9d32b36d418, type: 3}
+      propertyPath: questManager
+      value: 
+      objectReference: {fileID: 237722973}
     - target: {fileID: 2174253875424309289, guid: 45e5a146221b6d14a95ed9d32b36d418,
         type: 3}
       propertyPath: m_Name

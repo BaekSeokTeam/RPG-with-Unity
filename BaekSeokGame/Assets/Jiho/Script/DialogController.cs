@@ -52,7 +52,7 @@ public class DialogController : MonoBehaviour
     //    dialogUI.SetActive(isTalking);
     //}
     public void Action(GameObject npc)
-    {
+    {   
         ObjectData objData = npc.GetComponent<ObjectData>();
         //만약 npc id가 현재 퀘스트의 
     
