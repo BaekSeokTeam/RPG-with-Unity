@@ -189,7 +189,7 @@ public class PlayerController : MonoBehaviour
 
 
         DataController.Instance.gameData.playerX = this.transform.position.x;
-        DataController.Instance.gameData.playerY = this.transform.position.y    ;
+        DataController.Instance.gameData.playerY = this.transform.position.y;
 
 
         Debug.DrawRay(playerRigid.position,lookingVec*0.5f,new Color(0,1,0));

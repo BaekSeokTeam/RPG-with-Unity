@@ -5,17 +5,47 @@ using UnityEngine;
 public class QuestManager : MonoBehaviour
 {
 
+    static bool onLoad = false;
     public int questId;
     public int questActionIdx;
     Dictionary<int,QuestData> questList;
     public GameObject[] questObject;
+    public GameObject uiManager;
     int maxEnemyCount;
     int enemyCount;
     void Awake()
     {
         questList = new Dictionary<int,QuestData>();
-
         GenerateData();
+
+        if (!onLoad)
+        {
+            questId = DataController.Instance.gameData.questId;
+            questActionIdx= DataController.Instance.gameData.questActionIdx;
+            enemyCount = DataController.Instance.gameData.enemyCount;
+            onLoad = true;
+
+        }
+        EnemyQuestControl();
+        ChangeQuestUI();
+
+    }
+    private void FixedUpdate()
+    {
+        DataController.Instance.gameData.questId = questId;
+        DataController.Instance.gameData.questActionIdx = questActionIdx;
+        DataController.Instance.gameData.enemyCount = enemyCount;
+    }
+    void ChangeQuestUI()
+    {
+        if (questId == 0)
+        {
+            uiManager.GetComponent<QuestUIManager>().Change(null, null);
+        }
+        else
+        {
+            uiManager.GetComponent<QuestUIManager>().Change(questList[questId].questTitle,questList[questId].questDescription[questActionIdx]);
+        }
     }
 
 
@@ -44,19 +74,23 @@ public class QuestManager : MonoBehaviour
     {
         if (questId == 0)
         {
+            ChangeQuestUI();
             return;
         }
         if (questList[questId].questNpc[questActionIdx] == id)
         {
              questActionIdx+=1;
+            
             EnemyQuestControl();
         }
         if (questList[questId].questNpc.Length == questActionIdx)
         {
             questId = 0;
             questActionIdx=0;
+           
             EnemyQuestControl();
         }
+        ChangeQuestUI();
     }
     public void CheckQuest()
     {
@@ -64,6 +98,7 @@ public class QuestManager : MonoBehaviour
         {
             questId = 0;
             questActionIdx = 0;
+            ChangeQuestUI();
             EnemyQuestControl();
         }
     }
@@ -71,10 +106,11 @@ public class QuestManager : MonoBehaviour
     {
         questActionIdx += 1;
         EnemyQuestControl();
+        ChangeQuestUI();
     }
     public void QuestEmemyDied(int enemyId)
     {
-        
+
 
         if (questId==20 && questActionIdx == 1 && enemyId == 10000)
         {
