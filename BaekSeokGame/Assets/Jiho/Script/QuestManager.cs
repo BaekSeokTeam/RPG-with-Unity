@@ -78,7 +78,7 @@ public class QuestManager : MonoBehaviour
 
         if (questId==20 && questActionIdx == 1 && enemyId == 10000)
         {
-            Debug.Log("시발 줫같네");
+
             enemyCount += 1;
             if (enemyCount == maxEnemyCount)
             {

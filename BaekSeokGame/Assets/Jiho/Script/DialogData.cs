@@ -56,7 +56,6 @@ public class DialogData : MonoBehaviour
         int findIndex = 0;
         if (id % 100 != 0)
         {
-            Debug.Log(id);
             findIndex = Array.FindIndex(npcText.data, i => i.id == id && i.chapter == 0);
         }
         else
