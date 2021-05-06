@@ -51,9 +51,9 @@ public class DialogController : MonoBehaviour
     //    hidingObject.SetActive(!isTalking);
     //    dialogUI.SetActive(isTalking);
     //}
-    public void Action(GameObject npc)
+    public void Action(GameObject objectData)
     {   
-        ObjectData objData = npc.GetComponent<ObjectData>();
+        ObjectData objData = objectData.GetComponent<ObjectData>();
         //만약 npc id가 현재 퀘스트의 
     
             Talk(objData);
@@ -144,13 +144,13 @@ public class DialogController : MonoBehaviour
     //}
     void Talk(ObjectData npc)
     {
+           
+        if (npc.tag == "npc") {
             int talkIdx = questManager.GetQuestTalkIndex(npc.id);
-        
-            var response= dialogData.GetNpcDialog(talkIdx, dialogIdx);
+            var response = dialogData.GetNpcDialog(talkIdx, dialogIdx);
             string nameText = npc.npcName;
             string body = response.Item2;
             int isNpc = response.Item1;
-
             if (body == null)
             {
                 questManager.CheckQuest(npc.id);
@@ -162,25 +162,47 @@ public class DialogController : MonoBehaviour
             }
             else
             {
-            if (isNpc == 1)
+                if (isNpc == 1)
+                {
+                    npcName.text = nameText;
+                    dialogBody.text = body;
+                    npcPortraitImage.sprite = dialogData.GetNpcPortrait(npc.id, dialogIdx);
+                    playerPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
+                    npcPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                    isTalking = true;
+                    dialogIdx++;
+                }
+                else
+                {
+                    npcName.text = "주인공";
+                    dialogBody.text = body;
+                    npcPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
+                    playerPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                    playerPortraitImage.sprite = dialogData.GetPlayerPortrait(npc.id, dialogIdx);
+                    isTalking = true;
+                    dialogIdx++;
+                }
+            }
+        }
+        else if (npc.tag == "Item")
+        {
+        
+            if (isTalking == false)
             {
-                npcName.text = nameText;
-                dialogBody.text = body;
-                npcPortraitImage.sprite = dialogData.GetNpcPortrait(npc.id, dialogIdx);
-                playerPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
-                npcPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                
+                npcName.text = npc.GetComponent<ObjectData>().npcName;
+                dialogBody.text = npc.GetComponent<ObjectData>().description;
+    
+                playerPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+                npcPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 0);
                 isTalking = true;
-                dialogIdx++;
+                
+                dialogIdx = 0;
             }
             else
             {
-                npcName.text = "주인공";
-                dialogBody.text = body;
-                npcPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
-                playerPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                playerPortraitImage.sprite = dialogData.GetPlayerPortrait(npc.id, dialogIdx);
-                isTalking = true;
-                dialogIdx++;
+                questManager.IncreaseIdx();
+                   isTalking = false;
             }
         }
         

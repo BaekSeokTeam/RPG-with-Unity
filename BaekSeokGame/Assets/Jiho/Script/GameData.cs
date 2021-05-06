@@ -14,6 +14,5 @@ public class GameData
     //퀘스트정보
     public int questId;
     public int questActionIdx;
-
     public int enemyCount;
 }

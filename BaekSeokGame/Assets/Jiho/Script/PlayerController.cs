@@ -55,12 +55,11 @@ public class PlayerController : MonoBehaviour
         // {
         //     dialog.Action(scanObj);
         // }
-        else if (scanObj.tag =="npc")
+        else if (scanObj.tag =="npc"|| scanObj.tag == "Item")
         {
-            
             dialog.Action(scanObj);
         }
-
+    
         return;
     }
     
@@ -193,8 +192,8 @@ public class PlayerController : MonoBehaviour
 
 
         Debug.DrawRay(playerRigid.position,lookingVec*0.5f,new Color(0,1,0));
-        
-        rayHit = Physics2D.Raycast(playerRigid.position, lookingVec, 0.5f, LayerMask.GetMask("Npc"));
+        int layerMask=1<< LayerMask.NameToLayer("Object");
+        rayHit = Physics2D.Raycast(playerRigid.position, lookingVec, 0.5f,layerMask);
       
         if (rayHit.collider != null)
         {
@@ -244,7 +243,7 @@ public class PlayerController : MonoBehaviour
         if (isPlayerOnPortal == true)
             
         {
-            Debug.Log("err");
+          
             Portal();
         }
         else if (scanObj!=null&&scanObj.tag!=null)

@@ -6,5 +6,6 @@ public class ObjectData : MonoBehaviour
 {
     public int id;
     public string npcName;
+    public string description;
 
 }
