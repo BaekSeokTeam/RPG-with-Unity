@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
         else if (scanObj.tag =="npc"|| scanObj.tag == "Item")
         {
             dialog.Action(scanObj);
-        }
+        }   
     
         return;
     }

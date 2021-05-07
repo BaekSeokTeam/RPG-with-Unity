@@ -34,23 +34,7 @@ public class DialogController : MonoBehaviour
         
     }
 
-    //public void Action(GameObject npc)
-    //{
-    //    ObjectData objData = npc.GetComponent<ObjectData>();
-    //    //만약 npc id가 현재 퀘스트의 
-    //    if (npc.GetComponent<npcStatus>().oneWayTalk[0])
-    //    {
-    //        Talk(objData,1);
-    //    }
-    //    else if (!npc.GetComponent<npcStatus>().oneWayTalk[0])
-    //    {
-    //        Talk(objData, 2);
-    //    }
 
-    //    //Change ui status through isTalking flag.
-    //    hidingObject.SetActive(!isTalking);
-    //    dialogUI.SetActive(isTalking);
-    //}
     public void Action(GameObject objectData)
     {   
         ObjectData objData = objectData.GetComponent<ObjectData>();
@@ -63,97 +47,19 @@ public class DialogController : MonoBehaviour
         hidingObject.SetActive(!isTalking);
         dialogUI.SetActive(isTalking);
     }
-    //void Talk(ObjectData npc,int caseNum)
-    //{
 
-    //    if (caseNum== 1){
-    //        playerPortrait.gameObject.SetActive(false);
-    //        string nameText = npc.npcName;
-    //        string body = dialogData.GetNpcDialog(npc.id, dialogIdx);
-    //        if (body == null)
-    //        {
-    //            isTalking = false;
-    //            playerPortrait.gameObject.SetActive(true);
-    //            npcPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-    //            playerPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-    //            dialogIdx = 0;
-    //            return;
-    //        }
-    //        else
-    //        {
-    //            npcName.text = nameText;
-    //            dialogBody.text = body;
-
-    //            npcPortraitImage.sprite = dialogData.GetNpcPortrait(npc.id, dialogIdx);
-    //            isTalking = true;
-    //            dialogIdx++;
-    //        }
-    //    }
-    //    else if (caseNum == 2)
-    //    {
-    //        if (dialogIdx % 2 == 0)
-    //        {
-    //            string nameText = npc.npcName;
-    //            string body = dialogData.GetNpcDialog(npc.id, dialogIdx/2);
-
-    //            if (body == null)
-    //            {
-    //                npcPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-    //                playerPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-    //                isTalking = false;
-
-    //                dialogIdx = 0;
-    //                return;
-    //            }
-
-    //            else
-    //            {
-    //                npcName.text = nameText;
-    //                dialogBody.text = body;
-    //                playerPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
-    //                npcPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-    //                npcPortraitImage.sprite = dialogData.GetNpcPortrait(npc.id, dialogIdx/2);
-    //                isTalking = true;
-    //                dialogIdx++;
-    //            }
-    //        }
-    //        else
-    //        {
-    //            string nameText = "킹갓엠퍼러제너럴유덕규";
-    //            string body = dialogData.GetPlayerDialog(npc.id, dialogIdx/2);
-
-    //            if (body == null)
-    //            {
-    //                isTalking = false;
-    //                dialogIdx = 0;
-    //                return;
-    //            }
-
-    //            else
-    //            {
-    //                npcName.text = nameText;    
-    //                dialogBody.text = body;
-    //                npcPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
-    //                playerPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-    //                playerPortraitImage.sprite = dialogData.GetPlayerPortrait(npc.id, dialogIdx/2);
-    //                isTalking = true;
-    //                dialogIdx++;
-    //            }
-    //        }
-    //    }
-    //}
-    void Talk(ObjectData npc)
+    void Talk(ObjectData objectData)
     {
            
-        if (npc.tag == "npc") {
-            int talkIdx = questManager.GetQuestTalkIndex(npc.id);
+        if (objectData.tag == "npc") {
+            int talkIdx = questManager.GetQuestTalkIndex(objectData.id);
             var response = dialogData.GetNpcDialog(talkIdx, dialogIdx);
-            string nameText = npc.npcName;
+            string nameText = objectData.GetComponent<NpcData>().npcName;
             string body = response.Item2;
             int isNpc = response.Item1;
             if (body == null)
             {
-                questManager.CheckQuest(npc.id);
+                questManager.CheckQuest(objectData.id);
                 isTalking = false;
                 npcPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 1);
                 playerPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 1);
@@ -166,7 +72,8 @@ public class DialogController : MonoBehaviour
                 {
                     npcName.text = nameText;
                     dialogBody.text = body;
-                    npcPortraitImage.sprite = dialogData.GetNpcPortrait(npc.id, dialogIdx);
+                    npcPortraitImage.sprite = objectData.GetComponent<NpcData>().npcEmotion[dialogData.GetNpcPortrait(objectData.id, dialogIdx)];
+
                     playerPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
                     npcPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 1);
                     isTalking = true;
@@ -178,20 +85,20 @@ public class DialogController : MonoBehaviour
                     dialogBody.text = body;
                     npcPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
                     playerPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                    playerPortraitImage.sprite = dialogData.GetPlayerPortrait(npc.id, dialogIdx);
+                    playerPortraitImage.sprite = GameObject.Find("Player").GetComponent<PlayerData>().playerEmotion[dialogData.GetPlayerPortrait(objectData.id, dialogIdx)];
                     isTalking = true;
                     dialogIdx++;
                 }
             }
         }
-        else if (npc.tag == "Item")
+        else if (objectData.tag == "Item")
         {
         
             if (isTalking == false)
             {
                 
-                npcName.text = npc.GetComponent<ObjectData>().npcName;
-                dialogBody.text = npc.GetComponent<ObjectData>().description;
+                npcName.text = objectData.GetComponent<ItemData>().itemName;
+                dialogBody.text = objectData.GetComponent<ItemData>().itemDescription;
     
                 playerPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 0);
                 npcPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 0);
