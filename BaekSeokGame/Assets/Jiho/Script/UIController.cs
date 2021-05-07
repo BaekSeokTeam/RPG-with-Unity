@@ -6,19 +6,20 @@ public class UIController : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject[] UI;
-
+ 
     void Awake()
     {
         UI[0].SetActive(true);
+   
         for (int i = 1; i < UI.Length; i++)
         {
             
                 UI[i].SetActive(false);
-          
-           
+ 
+
         }
     }
-
+    
     // Update is called once per frame
     public void changeMenu(int id)
     {
@@ -31,6 +32,7 @@ public class UIController : MonoBehaviour
             else
             {
                 UI[i].SetActive(true);
+                
             }
         }
     }

@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public Joystick joystick;
     public DialogController dialog;
     public Combat combat;
+    public GameObject inventory;
 
     public float speed = 5f;
     public string currentMapName;
@@ -58,6 +59,10 @@ public class PlayerController : MonoBehaviour
         else if (scanObj.tag =="npc"|| scanObj.tag == "Item")
         {
             dialog.Action(scanObj);
+            if (scanObj.tag == "Item")
+            {
+                inventory.GetComponent<InventoryController>().AddItem(scanObj.GetComponent<ItemData>());
+            }
         }   
     
         return;
@@ -199,6 +204,7 @@ public class PlayerController : MonoBehaviour
         {
             
             scanObj = rayHit.collider.gameObject;
+     
             
         }
         else
