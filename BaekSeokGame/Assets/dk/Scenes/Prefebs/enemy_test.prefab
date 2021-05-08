@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2174253875424309294}
   - component: {fileID: 2174253875424309293}
   - component: {fileID: 2174253875424309292}
-  - component: {fileID: 380898436}
+  - component: {fileID: 2242401666128571209}
   m_Layer: 11
-  m_Name: enemy1
+  m_Name: enemy_test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,7 +131,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &380898436
+--- !u!114 &2242401666128571209
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,7 +140,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 2174253875424309289}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fad53cc2ba04fc54aa765e8b51b62434, type: 3}
+  m_Script: {fileID: 11500000, guid: e56be93cad4f5144c8bfaa57875044eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  anim: {fileID: 0}
+  enemyName: 
+  enemyType: 0
+  enemyLevel: 999
+  enemyMaxHealth: 9999
+  enemyCurrentHealth: 0
+  enemyAttackDamage: 15
+  enemySkillDamage: 0
+  enemyArmor: 0
+  enemyResistance: 0
+  enemyAttackMulti: 0
+  enemyDefenseMulti: 0
+  enemyTraceRange: 9
+  enemyAttackMinRange: 3
+  enemyAttackMaxRange: 6
+  enemySkillMinRange: 0
+  enemySkillMaxRange: 0
+  curState: 0
