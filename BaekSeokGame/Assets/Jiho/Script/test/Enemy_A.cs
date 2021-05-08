@@ -8,7 +8,7 @@ public class Enemy_A : Enemy
 
     public Transform target;
     public float speed = 500f;
-    public float nextWaypointDistance = 1f;
+    public float nextWaypointDistance = 2f;
 
     Path path;
     public int currentWaypoint = 0;
@@ -36,12 +36,9 @@ public class Enemy_A : Enemy
         StartCoroutine(this.CheckStateForAction());
     }
 
-    public override void Update()
-    {
 
-    }
     // Update is called once per frame
-    public  void trace()
+    public override void Update()
     {
         
         if (path == null)
@@ -59,13 +56,13 @@ public class Enemy_A : Enemy
 
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - enemyRigid.position).normalized;
-        enemyRigid.velocity = direction * speed;
+        enemyRigid.velocity = direction * 3.0f;
 
-        Debug.Log("path.curr" + path.vectorPath[currentWaypoint]);
-        Debug.Log("dir" + direction);
-        Debug.Log("erpo" + enemyRigid.position);
+
 
         float distance = Vector2.Distance(enemyRigid.position, path.vectorPath[currentWaypoint]);
+
+        
 
         if (distance < nextWaypointDistance)
         {
@@ -160,7 +157,7 @@ public class Enemy_A : Enemy
                     
                     break;
             }
-            yield return null;
+            yield return new WaitForSeconds(0.2f);
         }
 
     }
@@ -169,10 +166,10 @@ public class Enemy_A : Enemy
 
     void UpdatePath()
     {
-        Debug.Log("up");
+        
         if (seeker.IsDone())
         {
-            Debug.Log("upddapteptah in if");
+            
             seeker.StartPath(enemyRigid.position, target.position, OnPathComplete);
         }
 
@@ -181,7 +178,7 @@ public class Enemy_A : Enemy
     {
         if (!p.error)
         {
-            Debug.Log("onpathcomple in if");
+            
             path = p;
             currentWaypoint = 0;
         }
