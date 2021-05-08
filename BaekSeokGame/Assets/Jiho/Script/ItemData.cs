@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class ItemData : ObjectData
 {
     // Start is called before the first frame update
@@ -26,7 +27,7 @@ public class ItemData : ObjectData
         this.itemDescription = itemDescription;
         this.itemCount = itemCount;
         this.itemType = itemType;
-        this.icon = Resources.Load("ItemIcon/" + itemName, typeof(Sprite)) as Sprite;
+        this.icon = Resources.Load("ItemIcon/" + id, typeof(Sprite)) as Sprite;
 
     }
 

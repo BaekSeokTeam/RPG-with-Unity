@@ -17,7 +17,7 @@ public class DialogController : MonoBehaviour
     public GameObject npcPortrait;
     public GameObject playerPortrait;
     public QuestManager questManager;
-
+    public InventoryController inventoryController;
     public int dialogIdx=0;
     bool isTalking;
     Image npcPortraitImage;
@@ -108,8 +108,9 @@ public class DialogController : MonoBehaviour
             }
             else
             {
+ 
                 questManager.IncreaseIdx();
-                   isTalking = false;
+                isTalking = false;
             }
         }
         

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryController : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class InventoryController : MonoBehaviour
     public GameObject[] slotParent;
     List<ItemData> itemList;
     List<ItemSlot[]> slots;
-    void Awake()
+    void Start()
     {
         Database db = GameObject.Find("Database").GetComponent<Database>();
         UI[0].SetActive(true);
@@ -26,8 +27,14 @@ public class InventoryController : MonoBehaviour
 
 
         }
-       
-        
+        for (int i = 0; i < db.itemList.Count; i++)
+        {
+            
+            
+            AddItem(db.itemList[i]);
+        }
+
+        showItems(0);
     }
     public void AddItem(ItemData item){
 
@@ -45,13 +52,35 @@ public class InventoryController : MonoBehaviour
         
         
     }
+    public void RemoveItem(ItemData item,int count=1)
+    {
+
+        for (int i = 0; i < itemList.Count; i++)
+        {
+            if (item.id == itemList[i].id)
+            {
+                itemList[i].itemCount-=count;
+                if (itemList[i].itemCount == 0)
+                {
+                    itemList.RemoveAt(i);
+                }
+                return;
+               
+            }
+        }
+
+
+       
+
+
+    }
 
     void showItems(int id)  
     {
         List<ItemData> temp = new List<ItemData>();
         for (int i = 0; i < itemList.Count; i++)
         {
-            Debug.Log(itemList[i].itemType);
+            
            
             if (id== (int)itemList[i].itemType)
             {
@@ -62,10 +91,10 @@ public class InventoryController : MonoBehaviour
         }
         for (int i = 0; i < temp.Count; i++)
         {
-            Debug.Log(id);
-            Debug.Log(i);
+           
 
             slots[id][i].AddItem(temp[i]);
+            slots[id][i].transform.Find("Image").gameObject.SetActive(true);
             
         }
     }
@@ -81,6 +110,7 @@ public class InventoryController : MonoBehaviour
             else
             {
                 UI[i].SetActive(true);
+                UI[i].transform.Find("Scrollbar Vertical").gameObject.GetComponent<Scrollbar>().value = 1;
                 showItems(i);
 
             }

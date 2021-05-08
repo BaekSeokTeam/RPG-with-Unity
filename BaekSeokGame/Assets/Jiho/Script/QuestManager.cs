@@ -11,6 +11,7 @@ public class QuestManager : MonoBehaviour
     Dictionary<int, QuestData> questList;
     public GameObject[] questObject;
     public GameObject uiManager;
+    public InventoryController inventory;
     int maxEnemyCount;
     int enemyCount;
     void Awake()
@@ -173,6 +174,10 @@ public class QuestManager : MonoBehaviour
                 if (questActionIdx == 1)
                 {
                     questObject[0].SetActive(true);
+                }
+                else if (questActionIdx == 2)
+                {
+                    inventory.AddItem(questObject[0].GetComponent<ItemData>());
                 }
                 return;
             default:
