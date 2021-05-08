@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
         power = 5.0f ;
         isPlayerOnPortal = false;
 
-
+        /*
         if (!onLoad)
         {
             this.transform.position = new Vector3(DataController.Instance.gameData.playerX, DataController.Instance.gameData.playerY, 0);
@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-
+        */
 
 
     }

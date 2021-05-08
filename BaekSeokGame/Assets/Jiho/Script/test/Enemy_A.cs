@@ -1,10 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class Enemy_A : Enemy
 {
-    
+
+    public Transform target;
+    public float speed = 500f;
+    public float nextWaypointDistance = 1f;
+
+    Path path;
+    public int currentWaypoint = 0;
+    public bool reachedEndOfPath = false;
+
+    Seeker seeker;
 
     // Start is called before the first frame update
     public override void Start()
@@ -12,18 +22,55 @@ public class Enemy_A : Enemy
         
         enemyCurrentHealth = enemyMaxHealth;
 
+
+        seeker = GetComponent<Seeker>();
         enemyRigid = GetComponent<Rigidbody2D>();
+
+        
 
         _transform = this.gameObject.GetComponent<Transform>();
         playerTransform = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        target = playerTransform;
 
         StartCoroutine(this.CheckState());
         StartCoroutine(this.CheckStateForAction());
     }
 
-    // Update is called once per frame
     public override void Update()
     {
+
+    }
+    // Update is called once per frame
+    public  void trace()
+    {
+        
+        if (path == null)
+            return;
+
+        if (currentWaypoint >= path.vectorPath.Count)
+        {
+            reachedEndOfPath = true;
+            return;
+        }
+        else
+        {
+            reachedEndOfPath = false;
+        }
+
+
+        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - enemyRigid.position).normalized;
+        enemyRigid.velocity = direction * speed;
+
+        Debug.Log("path.curr" + path.vectorPath[currentWaypoint]);
+        Debug.Log("dir" + direction);
+        Debug.Log("erpo" + enemyRigid.position);
+
+        float distance = Vector2.Distance(enemyRigid.position, path.vectorPath[currentWaypoint]);
+
+        if (distance < nextWaypointDistance)
+        {
+            currentWaypoint++;
+        }
 
     }
 
@@ -108,15 +155,38 @@ public class Enemy_A : Enemy
                     enemyRigid.velocity = new Vector2(0, 0);
                     break;
                 case CurrentState.trace:
-                    movement.x = playerTransform.position.x - _transform.position.x;
-                    movement.y = playerTransform.position.y - _transform.position.y;
-                    enemyRigid.velocity = movement.normalized * 3.0f;
+                    
+                    UpdatePath();
+                    
                     break;
             }
             yield return null;
         }
 
     }
+
+
+
+    void UpdatePath()
+    {
+        Debug.Log("up");
+        if (seeker.IsDone())
+        {
+            Debug.Log("upddapteptah in if");
+            seeker.StartPath(enemyRigid.position, target.position, OnPathComplete);
+        }
+
+    }
+    void OnPathComplete(Path p)
+    {
+        if (!p.error)
+        {
+            Debug.Log("onpathcomple in if");
+            path = p;
+            currentWaypoint = 0;
+        }
+    }
+
 
 
 }
