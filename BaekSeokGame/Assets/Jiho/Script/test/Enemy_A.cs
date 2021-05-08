@@ -56,7 +56,7 @@ public class Enemy_A : Enemy
         //지호가 추가한 내용
         //enemy에서 ememy_A로 옮기다가 뭐 잘못건드렸는지 에러나서 잠시 주석처리
 
-        //GameObject.Find("QuestManager").GetComponent<QuestManager>().QuestEmemyDied(this.GetComponent<EnemyData>().id);
+        GameObject.Find("QuestManager").GetComponent<QuestManager>().QuestEmemyDied(this.GetComponent<EnemyData>().id);
         //
         anim.SetBool("IsDead", true);
         isDead = true;

@@ -3023,7 +3023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1eb9cb88ad9874fa9e8ce47dfd718b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questId: 20
+  questId: 10
   questActionIdx: 0
   questObject:
   - {fileID: 1353416495}
@@ -10170,6 +10170,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &427242010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427242003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c1d738e6aa7b4b4db05cc8aded698b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 10000
 --- !u!1001 &432792458
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16402,6 +16415,11 @@ PrefabInstance:
       propertyPath: anim
       value: 
       objectReference: {fileID: 427242004}
+    - target: {fileID: 2242401666128571209, guid: 45e5a146221b6d14a95ed9d32b36d418,
+        type: 3}
+      propertyPath: enemyMaxHealth
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45e5a146221b6d14a95ed9d32b36d418, type: 3}
 --- !u!224 &643285640 stripped
@@ -16510,7 +16528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 951512023}
-  speed: 500
+  speed: 1
   nextWaypointDistance: 1
 --- !u!58 &653866281
 CircleCollider2D:
