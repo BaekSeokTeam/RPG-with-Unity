@@ -97,8 +97,8 @@ public class DialogController : MonoBehaviour
             if (isTalking == false)
             {
                 
-                npcName.text = objectData.GetComponent<ItemData>().itemName;
-                dialogBody.text = objectData.GetComponent<ItemData>().itemDescription;
+                npcName.text = objectData.GetComponent<ItemObject>().itemData.itemName;
+                dialogBody.text = objectData.GetComponent<ItemObject>().itemData.itemDescription;
     
                 playerPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 0);
                 npcPortraitImage.GetComponent<Image>().color = new Color(1, 1, 1, 0);

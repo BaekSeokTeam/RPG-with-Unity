@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class ItemData : ObjectData
+public class ItemData 
 {
     // Start is called before the first frame update
     
@@ -12,6 +12,7 @@ public class ItemData : ObjectData
     public int itemCount;
     public ItemType itemType;
     public Sprite icon;
+    public int id;
     public enum ItemType
     {
         EQUIP=0,

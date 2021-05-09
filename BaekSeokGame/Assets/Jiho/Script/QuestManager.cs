@@ -177,7 +177,7 @@ public class QuestManager : MonoBehaviour
                 }
                 else if (questActionIdx == 2)
                 {
-                    inventory.AddItem(questObject[0].GetComponent<ItemData>());
+                    inventory.AddItem(questObject[0].GetComponent<ItemObject>().itemData);
                 }
                 return;
             default:
