@@ -56,5 +56,6 @@ public class ItemSlot : MonoBehaviour
         item = null;
         icon.sprite = null;
         count.text = "";
+        transform.Find("Image").gameObject.SetActive(false);
     }
 }

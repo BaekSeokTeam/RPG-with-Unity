@@ -11,14 +11,16 @@ public class InventoryController : MonoBehaviour
     public GameObject[] slotParent;
     List<ItemData> itemList;
     List<ItemSlot[]> slots;
+    public int activeId;
     void Start()
     {
+        activeId = 0;
         Database db = GameObject.Find("Database").GetComponent<Database>();
         UI[0].SetActive(true);
         slots = new List<ItemSlot[]>();
 
         itemList = new List<ItemData>();
-        slots.Add(slotParent[0].GetComponentsInChildren<ItemSlot>());
+        slots.Add(slotParent[activeId].GetComponentsInChildren<ItemSlot>());
         for (int i = 1; i < UI.Length; i++)
         {
             
@@ -34,7 +36,7 @@ public class InventoryController : MonoBehaviour
             AddItem(db.itemList[i]);
         }
 
-        showItems(0);
+        showItems(activeId);
     }
     public void AddItem(ItemData item){
 
@@ -74,9 +76,16 @@ public class InventoryController : MonoBehaviour
 
 
     }
-
-    void showItems(int id)  
+    void renewSlots(int id)
     {
+        for(int i = 0; i < slots[id].Length; i++)
+        {
+            slots[id][i].RemoveItem();
+        }
+    }
+    public void showItems(int id)  
+    {
+        renewSlots(id);
         List<ItemData> temp = new List<ItemData>();
         for (int i = 0; i < itemList.Count; i++)
         {
@@ -109,6 +118,7 @@ public class InventoryController : MonoBehaviour
             }
             else
             {
+                activeId = id;
                 UI[i].SetActive(true);
                 UI[i].transform.Find("Scrollbar Vertical").gameObject.GetComponent<Scrollbar>().value = 1;
                 showItems(i);
