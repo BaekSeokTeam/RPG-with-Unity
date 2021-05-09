@@ -8,16 +8,19 @@ public class ItemImageClick : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 
     public InventoryController inventory;
 
-
+    public void Clicked()
+    {
+        inventory.GetComponent<ItemViewer>().makeView(transform.parent.GetComponent<ItemSlot>().item);
+    }
     public void OnPointerDown(PointerEventData data)
     {
 
+        //inventory.GetComponent<ItemViewer>().makeView(transform.parent.GetComponent<ItemSlot>().item);
 
-        inventory.GetComponent<ItemViewer>().makeView(transform.parent.GetComponent<ItemSlot>().item);
 
     }
     public void OnPointerUp(PointerEventData data)
     {
-
+        
     }
 }
