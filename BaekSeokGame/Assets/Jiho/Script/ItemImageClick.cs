@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ItemImageClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class ItemImageClick : MonoBehaviour
 {
 
     public InventoryController inventory;
@@ -12,15 +12,5 @@ public class ItemImageClick : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     {
         inventory.GetComponent<ItemViewer>().makeView(transform.parent.GetComponent<ItemSlot>().item);
     }
-    public void OnPointerDown(PointerEventData data)
-    {
-
-        //inventory.GetComponent<ItemViewer>().makeView(transform.parent.GetComponent<ItemSlot>().item);
-
-
-    }
-    public void OnPointerUp(PointerEventData data)
-    {
-        
-    }
+  
 }
