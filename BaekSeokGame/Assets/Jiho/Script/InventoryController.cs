@@ -57,6 +57,10 @@ public class InventoryController : MonoBehaviour
     public void RemoveItem(ItemData item,int count=1)
     {
 
+        if (item == null)
+        {
+            return;
+        }
         for (int i = 0; i < itemList.Count; i++)
         {
             if (item.id == itemList[i].id)
