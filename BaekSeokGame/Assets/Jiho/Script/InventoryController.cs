@@ -14,8 +14,10 @@ public class InventoryController : MonoBehaviour
     public int activeId;
     void Start()
     {
+        
         activeId = 0;
         Database db = GameObject.Find("Database").GetComponent<Database>();
+        Debug.Log(db.itemList.Count);
         UI[0].SetActive(true);
         slots = new List<ItemSlot[]>();
 

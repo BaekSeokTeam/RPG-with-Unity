@@ -9,6 +9,7 @@ public class ItemSlot : MonoBehaviour
     public Image icon;
     public Text count;
     public ItemData item;
+    
 
     public void AddItem(ItemData _item)
     {
