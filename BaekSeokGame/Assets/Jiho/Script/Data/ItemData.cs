@@ -30,9 +30,9 @@ public class ItemData : MonoBehaviour
     //TextAsset playerTextData;
     //MyTextDataArray playerText;
   
-    void Start()
+    void Awake()
     {
-
+        Debug.Log("itemdata");   
         GenerateData();
     }
     void GenerateData()

@@ -12,12 +12,13 @@ public class InventoryController : MonoBehaviour
     List<Item> itemList;
     List<ItemSlot[]> slots;
     public int activeId;
+    public Database db;
     void Start()
     {
         
         activeId = 0;
-        Database db = GameObject.Find("Database").GetComponent<Database>();
-        Debug.Log(db.itemList.Count);
+        Debug.Log("inven");
+        
         UI[0].SetActive(true);
         slots = new List<ItemSlot[]>();
 
