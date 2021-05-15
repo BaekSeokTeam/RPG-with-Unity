@@ -7,12 +7,39 @@ public class InventoryController : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject[] UI;
-
+    private static InventoryController instance = null;
     public GameObject[] slotParent;
-    List<Item> itemList;
+    
     List<ItemSlot[]> slots;
+    public static InventoryController Instance
+    {
+        get
+        {
+            if (null == instance)
+            {
+                return null;
+            }
+            return instance;
+        }
+    }
     public int activeId;
-    public Database db;
+    void Awake()
+    {
+        if (null == instance)
+        {
+
+            instance = this;
+
+
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+
+            Destroy(this.gameObject);
+        }
+
+    }
     void Start()
     {
         
@@ -22,7 +49,7 @@ public class InventoryController : MonoBehaviour
         UI[0].SetActive(true);
         slots = new List<ItemSlot[]>();
 
-        itemList = new List<Item>();
+        
         slots.Add(slotParent[activeId].GetComponentsInChildren<ItemSlot>());
         for (int i = 1; i < UI.Length; i++)
         {
@@ -32,28 +59,23 @@ public class InventoryController : MonoBehaviour
 
 
         }
-        for (int i = 0; i < db.itemList.Count; i++)
-        {
-            
-            
-            AddItem(db.itemList[i]);
-        }
+    
 
         showItems(activeId);
     }
     public void AddItem(Item item){
 
-        for (int i = 0; i < itemList.Count; i++)
+        for (int i = 0; i < InventoryData.Instance.items.Count; i++)
         {
-            if (item.id == itemList[i].id)
+            if (item.id == InventoryData.Instance.items[i].id)
             {
-                itemList[i].itemCount++;
+                InventoryData.Instance.items[i].itemCount++;
                 return;
             }
         }
 
 
-        itemList.Add(item);
+        InventoryData.Instance.items.Add(item);
         
         
     }
@@ -64,14 +86,14 @@ public class InventoryController : MonoBehaviour
         {
             return;
         }
-        for (int i = 0; i < itemList.Count; i++)
+        for (int i = 0; i < InventoryData.Instance.items.Count; i++)
         {
-            if (item.id == itemList[i].id)
+            if (item.id == InventoryData.Instance.items[i].id)
             {
-                itemList[i].itemCount-=count;
-                if (itemList[i].itemCount == 0)
+                InventoryData.Instance.items[i].itemCount-=count;
+                if (InventoryData.Instance.items[i].itemCount == 0)
                 {
-                    itemList.RemoveAt(i);
+                    InventoryData.Instance.items.RemoveAt(i);
                 }
                 return;
                
@@ -94,14 +116,14 @@ public class InventoryController : MonoBehaviour
     {
         renewSlots(id);
         List<Item> temp = new List<Item>();
-        for (int i = 0; i < itemList.Count; i++)
+        for (int i = 0; i < InventoryData.Instance.items.Count; i++)
         {
             
            
-            if (id== (int)itemList[i].itemType)
+            if (id== (int)InventoryData.Instance.items[i].itemType)
             {
                 
-                temp.Add(itemList[i]);
+                temp.Add(InventoryData.Instance.items[i]);
                
             }
         }

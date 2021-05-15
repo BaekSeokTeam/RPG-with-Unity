@@ -25,14 +25,37 @@ public class MyItemDataArray
 }
 public class ItemData : MonoBehaviour
 {
+    private static ItemData instance = null;
     TextAsset itemTextData;
     public MyItemDataArray itemArray;
     //TextAsset playerTextData;
     //MyTextDataArray playerText;
-  
+    public static ItemData Instance
+    {
+        get
+        {
+            if (null == instance)
+            {
+                return null;
+            }
+            return instance;
+        }
+    }
     void Awake()
     {
-        Debug.Log("itemdata");   
+        if (null == instance)
+        {
+
+            instance = this;
+
+
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+
+            Destroy(this.gameObject);
+        }
         GenerateData();
     }
     void GenerateData()

@@ -9,6 +9,6 @@ public class ItemObject : ObjectData
     void Start()
     {
         
-       itemData= GameObject.Find("Database").GetComponent<Database>().itemList.Find(x=>x.id == this.id);
+       itemData= Database.Instance.itemList.Find(x=>x.id == this.id);
     }
 }

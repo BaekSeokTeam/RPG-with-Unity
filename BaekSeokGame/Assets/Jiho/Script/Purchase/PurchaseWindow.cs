@@ -9,7 +9,7 @@ public class PurchaseWindow : MonoBehaviour
     public Text price;
     public Text description;
     public Image icon;
-    public InventoryController inventory;
+    
     Item item;
    public void Show(Item item)
     {
@@ -21,7 +21,7 @@ public class PurchaseWindow : MonoBehaviour
     }
     public void Purchase()
     {
-        inventory.AddItem(this.item);
+        InventoryController.Instance.AddItem(this.item);
         transform.gameObject.SetActive(false);
     }
 }

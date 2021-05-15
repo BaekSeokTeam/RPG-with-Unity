@@ -2,30 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Database : MonoBehaviour
+public class InventoryData : MonoBehaviour
 {
-    private static Database instance = null;
+    private static InventoryData instance = null;
     // Start is called before the first frame update
-    public List<Item> itemList;
-    public ItemData itemData;
+    public List<Item> items;
     void Awake()
     {
+        
         if (null == instance)
         {
-           
+
             instance = this;
 
-      
+
             DontDestroyOnLoad(this.gameObject);
         }
         else
         {
-           
+
             Destroy(this.gameObject);
         }
-
+        items = new List<Item>();
     }
-    public static Database Instance
+    public static InventoryData Instance
     {
         get
         {
@@ -39,16 +39,14 @@ public class Database : MonoBehaviour
     void Start()
 
     {
-        itemList = new List<Item>();
-        
-        for (int i = 0; i < itemData.itemArray.data.Length; i++)
+        Debug.Log(Database.Instance.itemList.Count);
+        for (int i=0; i< Database.Instance.itemList.Count; i++)
         {
-            itemList.Add(new Item(itemData.itemArray.data[i]));
-  
+            items.Add(Database.Instance.itemList[i]);
         }
-        Debug.Log("db");
+      
 
     }
-    
+
 
 }
