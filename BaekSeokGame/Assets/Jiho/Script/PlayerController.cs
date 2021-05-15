@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
             dialog.Action(scanObj);
             if (scanObj.tag == "Item")
             {
-                inventory.GetComponent<InventoryController>().AddItem(scanObj.GetComponent<ItemData>());
+                inventory.GetComponent<InventoryController>().AddItem(scanObj.GetComponent<Item>());
             }
         }   
     
