@@ -14,7 +14,7 @@ public class InventoryMenuClick : MonoBehaviour, IPointerDownHandler, IPointerUp
         int id = int.Parse(this.gameObject.name);
 
         menuController.GetComponent <InventoryController>().changeMenu(id);
-
+        menuController.GetComponent<ItemViewer>().makeVoid();
     }
     public void OnPointerUp(PointerEventData data)
     {
