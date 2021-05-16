@@ -19,14 +19,27 @@ public class Combat : MonoBehaviour
 
     public bool isInvulnerable = false;
 
-    
 
-        
-    public int maxHealth = 100; 
+
+
+    public int maxHealth = 100;
     public int currentHealth;
     public int attackDamage = 35;
 
     public healthBar healthBar;
+
+    //스탯정리
+
+    public int playerLevel;
+
+
+
+
+    //상태 체크용
+
+
+
+    public bool playerInvulnerable = false;
 
     // Start is called before the first frame update
     void Start()
